@@ -1,21 +1,7 @@
 
-import xcover 
-
-
-
-
-def grid(l,c):
-    return np.zeroes((l,c))
-
-
-import numpy
-
-def test(ligne):
-    return ligne,ligne
-
-
-def vrai_test(liste):
-    if liste :
-        return False
-    else :
-        pass
+def grid(lignes, colonnes, obstacles):
+    """Création de la grille"""
+    grille = np.array((lignes, colonnes))
+    for (x,y) in obstacles :
+        grille[x][y] = 1
+    return grille
