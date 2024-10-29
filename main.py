@@ -100,20 +100,16 @@ def grid_layout(grid, liste_sol):
     plt.imshow(grid_color, interpolation='nearest')
     plt.show()
 
-def dégage_doublons (liste):
-    indices = []
-    i = 0
-    while i < len(liste) :
-        indices = []
-        for j in range(i+1, len(liste)):
-            if np.array_equal(liste[i],liste[j]):
-                indices.append(j)
-        print(indices)
-        for k in sorted(indices, reverse = True) :
-            liste.pop(j)
-        i += 1
-    return(liste)
+def dégage_doublons(liste):
+    vus = set()
+    liste_sans_doublons = []
+    for array in liste:
+        array_tuple = tuple(map(tuple, array))  # Convertit l'array en un tuple de tuples pour le hashage
+        if array_tuple not in vus:
+            vus.add(array_tuple)
+            liste_sans_doublons.append(array)
 
+    return liste_sans_doublons
 
 def rotations_et_symetries(forme_géométrique):
     forme = np.array(forme_géométrique)
@@ -133,7 +129,7 @@ def rotations_et_symetries(forme_géométrique):
 def solve(grille,shape,n):
     matrix=[]
     for ind,(key,value) in enumerate(shape.items()):
-        Rot_sym=(rotations_et_symetries(value))
+        Rot_sym=(dégage_doublons(rotations_et_symetries(value)))
         L=[0 for i in range(n)]
         L[key]=1
         for form in Rot_sym:
