@@ -97,10 +97,13 @@ def grid_layout(grid, liste_sol):
     plt.show()
 
 def dégage_doublons (liste):
+    indices = []
     for i in range(len(liste)):
         for j in range(i+1, len(liste)):
             if np.array_equal(liste[i],liste[j]):
-                liste.pop(j)
+                indices.append(j)
+    for i in sorted(indices, reverse = True) :
+        liste.pop(i)
     return(liste)
 
 
