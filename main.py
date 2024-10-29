@@ -32,4 +32,5 @@ def vrai_test(liste):
 
 
 
-def grid_layout()
+def grid_layout(grid, pieces):
+    
