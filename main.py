@@ -18,18 +18,33 @@ RAW_SHAPES = {
 }
 
 color_palette_rgb = [
-    (255, 0, 0),      # Red
-    (0, 0, 255),      # Blue
-    (0, 255, 0),      # Green
-    (255, 255, 0),    # Yellow
-    (255, 165, 0),    # Orange
+    (254, 0, 0),      # Red
+    (0, 0, 254),      # Blue
+    (0, 254, 0),      # Green
+    (254, 254, 0),    # Yellow
+    (254, 165, 0),    # Orange
     (128, 0, 128),    # Purple
-    (0, 255, 255),    # Cyan
-    (255, 0, 255),    # Magenta
+    (0, 254, 254),    # Cyan
+    (254, 0, 254),    # Magenta
     (50, 205, 50),    # Lime
-    (255, 192, 203),  # Pink
+    (254, 192, 203),  # Pink
     (0, 128, 128),    # Teal
     (165, 42, 42)     # Brown
+]
+
+color_palette_rgb_2 = [
+    (0.25,0.346,0),      # Red
+    (0.2,0,0.345),      # Blue
+    (0.410,0.8,0),      # Green
+    (0.1,0.489,0.1),    # Yellow
+    (0.567,0,0),    # Orange
+    (0.24,0,0.634),    # Purple
+    (0,0,0.702),    # Cyan
+    (0.34,0.2,0.782),    # Magenta
+    (0.845,0,0.67),    # Lime
+    (0.5,0.895,0.3),  # Pink
+    (0.1,0,0.933),    # Teal
+    (0.967,0.3,0)    # Brown
 ]
 
 def grid(lignes, colonnes, obstacles):
@@ -89,7 +104,7 @@ def grid_layout(grid, liste_sol):
     for i,ligne in enumerate(grid):
         for j,pixel in enumerate(ligne):
             if pixel == 1:
-                grid_color[i,j] = [255,255,255]
+                grid_color[i,j] = [254,254,254]
             else:
                 counter +=1
                 for k in range(len(emplacement_piece)):
@@ -99,8 +114,7 @@ def grid_layout(grid, liste_sol):
 
                         #piece_name = sum(piece_index[k][n]*k+1 for n in range(len(piece_index[k])))
                         #grid_color[i,j] = color_palette_rgb[piece_name-1]
-
-    plt.imshow(grid_color, interpolation='nearest')
+    plt.imshow(grid_color.astype('uint8'))
     plt.show()
 
 def dégage_doublons(liste):
