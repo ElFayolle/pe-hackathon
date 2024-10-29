@@ -96,6 +96,13 @@ def grid_layout(grid, liste_sol):
     plt.imshow(grid_color, interpolation='nearest')
     plt.show()
 
+def dégage_doublons (liste):
+    for i in range(len(liste)):
+        for j in range(i+1, len(liste)):
+            if np.array_equal(liste[i],liste[j]):
+                liste.pop(j)
+    return(liste)
+
 
 def rotations_et_symetries(forme_géométrique):
     forme = np.array(forme_géométrique)
@@ -111,8 +118,7 @@ def rotations_et_symetries(forme_géométrique):
     return(rot_et_sym)
     
 
-def dégage_doublons (liste):
-    return np.unique(liste)
+
 
 
 
