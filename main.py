@@ -81,6 +81,7 @@ def possibilites(grille,piece):
 
 def grid_layout(grid, liste_sol):
     #grid = tableau rempli de 1 au niveau des cases obstacles et 0 ailleurs
+    
     piece_index, emplacement_piece = result_into_matrix(liste_sol)
     l,w = len(grid), len(grid[0])
     grid_color = np.zeros((l,w,3))  
@@ -90,12 +91,14 @@ def grid_layout(grid, liste_sol):
             if pixel == 1:
                 grid_color[i,j] = [255,255,255]
             else:
-                print(counter)
                 counter +=1
                 for k in range(len(emplacement_piece)):
-                    if emplacement_piece[k][counter] == 1:
-                        piece_name = sum(piece_index[k][n]*k+1 for n in range(len(piece_index[k])))
-                        grid_color[i,j] = color_palette_rgb[piece_name-1]
+                    if emplacement_piece[k,counter] == 1: #L'emplacement est occupé par la kième pièce
+                        print(k)
+                        grid_color[i,j] = color_palette_rgb[k]
+
+                        #piece_name = sum(piece_index[k][n]*k+1 for n in range(len(piece_index[k])))
+                        #grid_color[i,j] = color_palette_rgb[piece_name-1]
 
     plt.imshow(grid_color, interpolation='nearest')
     plt.show()
@@ -141,7 +144,7 @@ def solve(grille,shape,n):
     SOLUTION=[]
     for x in res:
         SOLUTION.append(matrix[x])
-        grid_layout(grille,np.array(SOLUTION))
+    grid_layout(grille,np.array(SOLUTION))
     return np.array(SOLUTION)
 
 
