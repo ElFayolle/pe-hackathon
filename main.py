@@ -97,6 +97,22 @@ def grid_layout(grid, liste_sol):
     plt.show()
 
 
+def rotations_et_symetries(forme_géométrique):
+    forme = np.array(forme_géométrique)
+    
+    rot_et_sym = []
+    for j in range (2):
+        
+        
+        for i in range(4):
+            forme = np.rot90(forme)
+            rot_et_sym.append(forme)
+        np.flip(forme, axis = j)
+    return(rot_et_sym)
+    
+
+def dégage_doublons (liste):
+    return np.unique(liste)
 
 
 
