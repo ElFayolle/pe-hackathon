@@ -123,6 +123,7 @@ def rotations_et_symetries(forme_géométrique):
 
 
 
+
 ## Test 
 grid_t = np.array([[1,0,1],[0,0,0],[1,0,0]])
 pieces_index_t = [[1, 0], [0,1]]
