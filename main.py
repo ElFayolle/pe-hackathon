@@ -1,6 +1,6 @@
 import numpy
 import xcover 
-import matplotlib.pyplot
+import matplotlib.pyplot as plt
 
 
 
