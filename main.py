@@ -3,18 +3,18 @@ import xcover
 import matplotlib.pyplot as plt
 
 RAW_SHAPES = {
-    "F": [[1, 1, 0], [0, 1, 1], [0, 1, 0]],
-    "I": [[1, 1, 1, 1, 1]],
-    "L": [[1, 0, 0, 0], [1, 1, 1, 1]],
-    "N": [[1, 1, 0, 0], [0, 1, 1, 1]],
-    "P": [[1, 1, 1], [1, 1, 0]],
-    "T": [[1, 1, 1], [0, 1, 0], [0, 1, 0]],
-    "U": [[1, 1, 1], [1, 0, 1]],
-    "V": [[1, 1, 1], [1, 0, 0], [1, 0, 0]],
-    "W": [[1, 0, 0], [1, 1, 0], [0, 1, 1]],
-    "X": [[0, 1, 0], [1, 1, 1], [0, 1, 0]],
-    "Y": [[0, 1, 0, 0], [1, 1, 1, 1]],
-    "Z": [[1, 1, 0], [0, 1, 0], [0, 1, 1]],
+    0: [[1, 1, 0], [0, 1, 1], [0, 1, 0]],
+    1: [[1, 1, 1, 1, 1]],
+    2: [[1, 0, 0, 0], [1, 1, 1, 1]],
+    3: [[1, 1, 0, 0], [0, 1, 1, 1]],
+    4: [[1, 1, 1], [1, 1, 0]],
+    5: [[1, 1, 1], [0, 1, 0], [0, 1, 0]],
+    6: [[1, 1, 1], [1, 0, 1]],
+    7: [[1, 1, 1], [1, 0, 0], [1, 0, 0]],
+    8: [[1, 0, 0], [1, 1, 0], [0, 1, 1]],
+    9: [[0, 1, 0], [1, 1, 1], [0, 1, 0]],
+    10: [[0, 1, 0, 0], [1, 1, 1, 1]],
+    11: [[1, 1, 0], [0, 1, 0], [0, 1, 1]],
 }
 
 color_palette_rgb = [
@@ -77,11 +77,7 @@ def possibilites(grille,piece):
                     pos.append(0)
             possib.append(pos)
     return possib
-# TEST #
-grille = np.array([[1,0,1],[0,0,0],[0,0,1]])
-piece = np.array([[1,1],[1,1]])
-print(possibilites(grille,piece))
-# FIN DU TEST #
+
 
 def grid_layout(grid, liste_sol):
     #grid = tableau rempli de 1 au niveau des cases obstacles et 0 ailleurs
@@ -137,13 +133,15 @@ def solve(grille,shape,n):
         L=[0 for i in range(n)]
         L[key]=1
         for form in Rot_sym:
-            possib=possibilites(form)
+            possib=possibilites(grille,form)
             for pos in possib:
                 matrix.append(L+pos)
-    res=xcover.covers_bool(matrix)
+    res=list(xcover.covers_bool(np.array(matrix,dtype=bool)))[0]
+    print(res)
     SOLUTION=[]
     for x in res:
         SOLUTION.append(matrix[x])
+        grid_layout(grille,np.array(SOLUTION))
     return np.array(SOLUTION)
 
 
@@ -151,8 +149,8 @@ def solve(grille,shape,n):
 
 ## Test 
 grid_t = np.array([[1,0,1],[0,0,0],[1,0,0]])
-pieces_index_t = [[1, 0], [0,1]]
+pieces_index_t = {0:np.array([[1, 0],[1,1]]),1:np.array([[1, 0],[1,1]])}
 pieces_emplacement_t = [[0,0,0,1,1,1],[1, 1, 1, 0, 0, 0]]
 
 
-print(solve(grid_t,pieces_index_t,12))
+print(solve(grid_t,pieces_index_t,2))
