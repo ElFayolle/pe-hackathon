@@ -39,10 +39,6 @@ def grid(lignes, colonnes, obstacles):
         grille[x][y] = 1
     return grille
 
-
-def grid(l,c):
-    return np.zeroes((l,c))
-
 def possibilites(grille,piece):
     '''Renvoie toutes les possibilités de position de la pièce dans la grille avec UNE orientation particulière'''
     possib = []
