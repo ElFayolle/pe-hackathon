@@ -130,7 +130,21 @@ def rotations_et_symetries(forme_géométrique):
     
 
 
-
+def solve(grille,shape):
+    matrix=[]
+    for ind,(key,value) in enumerate(shape.items()):
+        Rot_sym=dégage_doublons(rotations_et_symetries(value))
+        L=[0 for i in range(12)]
+        L[key]=1
+        for form in Rot_sym:
+            possib=possibilites(form)
+            for pos in possib:
+                matrix.append(L+pos)
+    res=xcover.covers_bool(matrix)
+    SOLUTION=[]
+    for x in res:
+        SOLUTION.append(matrix[x])
+    return np.array(SOLUTION)
 
 
 
