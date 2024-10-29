@@ -4,7 +4,7 @@ def test(ligne):
     return ligne,ligne
 
 
-def vrai-test(liste):
+def vrai_test(liste):
     if liste :
         return False
     else :
