@@ -11,19 +11,6 @@ def grid(l,c):
 
 
 
-def test(ligne):
-    return ligne,ligne
-
-
-def vrai_test(liste):
-    if liste :
-        return False
-    else :
-        pass
-
-
-
-
 
 
 
@@ -33,4 +20,4 @@ def vrai_test(liste):
 
 
 def grid_layout(grid, pieces):
-    
+
