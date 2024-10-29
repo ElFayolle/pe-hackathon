@@ -39,6 +39,12 @@ def grid(lignes, colonnes, obstacles):
         grille[x][y] = 1
     return grille
 
+def result_into_matrix(L):
+    piece_index = L[:,0:12]
+    piece_emplacement = L[:,13:]
+    return piece_index, piece_emplacement
+
+
 def possibilites(grille,piece):
     '''Renvoie toutes les possibilités de position de la pièce dans la grille avec UNE orientation particulière'''
     possib = []
@@ -77,10 +83,9 @@ piece = np.array([[1,1],[1,1]])
 print(possibilites(grille,piece))
 # FIN DU TEST #
 
-def grid_layout(grid, piece_index, emplacement_piece):
+def grid_layout(grid, liste_sol):
     #grid = tableau rempli de 1 au niveau des cases obstacles et 0 ailleurs
-    #pieces_index = renvoie l'index de la pièce : [0,1,0,0,0,0] pour la pièce n°2
-    #emplacement_piece = oui
+    piece_index, emplacement_piece = result_into_matrix(liste_sol)
     l,w = len(grid), len(grid[0])
     grid_color = np.zeros((l,w,3))  
     counter = -1
@@ -99,9 +104,40 @@ def grid_layout(grid, piece_index, emplacement_piece):
     plt.imshow(grid_color, interpolation='nearest')
     plt.show()
 
+def dégage_doublons (liste):
+    indices = []
+    for i in range(len(liste)):
+        for j in range(i+1, len(liste)):
+            if np.array_equal(liste[i],liste[j]):
+                indices.append(j)
+    for i in sorted(indices, reverse = True) :
+        liste.pop(i)
+    return(liste)
+
+
+def rotations_et_symetries(forme_géométrique):
+    forme = np.array(forme_géométrique)
+    
+    rot_et_sym = []
+    for j in range (2):
+        
+        
+        for i in range(4):
+            forme = np.rot90(forme)
+            rot_et_sym.append(forme)
+        np.flip(forme, axis = j)
+    return(rot_et_sym)
+    
+
+
+
+
+
+
+
 ## Test 
 grid_t = np.array([[1,0,1],[0,0,0],[1,0,0]])
 pieces_index_t = [[1, 0], [0,1]]
 pieces_emplacement_t = [[0,0,0,1,1,1],[1, 1, 1, 0, 0, 0]]
-#grid_layout(grid_t,pieces_index_t, pieces_emplacement_t)
+grid_layout(grid_t,pieces_index_t, pieces_emplacement_t)
 
