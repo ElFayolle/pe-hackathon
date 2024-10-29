@@ -101,6 +101,7 @@ def grid_layout(grid, liste_sol):
 
 
 
+
 ## Test 
 grid_t = np.array([[1,0,1],[0,0,0],[1,0,0]])
 pieces_index_t = [[1, 0], [0,1]]
