@@ -102,12 +102,16 @@ def grid_layout(grid, liste_sol):
 
 def dégage_doublons (liste):
     indices = []
-    for i in range(len(liste)):
+    i = 0
+    while i < len(liste) :
+        indices = []
         for j in range(i+1, len(liste)):
             if np.array_equal(liste[i],liste[j]):
                 indices.append(j)
-    for i in sorted(indices, reverse = True) :
-        liste.pop(i)
+        print(indices)
+        for k in sorted(indices, reverse = True) :
+            liste.pop(j)
+        i += 1
     return(liste)
 
 
@@ -129,7 +133,7 @@ def rotations_et_symetries(forme_géométrique):
 def solve(grille,shape,n):
     matrix=[]
     for ind,(key,value) in enumerate(shape.items()):
-        Rot_sym=dégage_doublons(rotations_et_symetries(value))
+        Rot_sym=(rotations_et_symetries(value))
         L=[0 for i in range(n)]
         L[key]=1
         for form in Rot_sym:
@@ -153,4 +157,5 @@ pieces_index_t = {0:np.array([[1, 0],[1,1]]),1:np.array([[1, 0],[1,1]])}
 pieces_emplacement_t = [[0,0,0,1,1,1],[1, 1, 1, 0, 0, 0]]
 
 
-print(solve(grid_t,pieces_index_t,2))
+#print(solve(grid_t,pieces_index_t,2))
+solve(grid(6,10,[]),RAW_SHAPES,12)
