@@ -49,15 +49,16 @@ def possibilites(grille,piece):
     '''Renvoie toutes les possibilités de position de la pièce dans la grille avec UNE orientation particulière'''
     possib = []
     n_vide = np.sum(grille == 0)
-    indice_vide = np.argwhere(grille == 0)
-    print(indice_vide)
+    indice_vide = np.argwhere(grille == 0) # C'est un tableau numpy donc pas pratique pour la suite mais bon
     n_piece = np.sum(piece == 1)
     indice_piece = np.argwhere(piece == 1)
     indice_piece_1 = indice_piece[0]
     for i_vide in indice_vide:
         test = [(i_vide[0],i_vide[1])]
         flag = True
-        for i_piece in indice_piece[1:]:
+        k = 1
+        while flag and k < len(indice_piece):
+            i_piece = indice_piece[k]
             indice = i_vide + i_piece - indice_piece_1
             if indice[0] >= len(grille) or indice[1] >= len(grille[0]):
                 flag = False
@@ -65,6 +66,8 @@ def possibilites(grille,piece):
                 flag = False
             else:
                 test.append((indice[0],indice[1]))
+            k += 1
+        
         if flag:
             pos = []
             for indice in indice_vide:
@@ -74,6 +77,11 @@ def possibilites(grille,piece):
                     pos.append(0)
             possib.append(pos)
     return possib
+# TEST #
+grille = np.array([[1,0,1],[0,0,0],[0,0,1]])
+piece = np.array([[1,1],[1,1]])
+print(possibilites(grille,piece))
+# FIN DU TEST #
 
 def grid_layout(grid, liste_sol):
     #grid = tableau rempli de 1 au niveau des cases obstacles et 0 ailleurs
@@ -131,5 +139,5 @@ def rotations_et_symetries(forme_géométrique):
 grid_t = np.array([[1,0,1],[0,0,0],[1,0,0]])
 pieces_index_t = [[1, 0], [0,1]]
 pieces_emplacement_t = [[0,0,0,1,1,1],[1, 1, 1, 0, 0, 0]]
-#grid_layout(grid_t,pieces_index_t, pieces_emplacement_t)
+grid_layout(grid_t,pieces_index_t, pieces_emplacement_t)
 
