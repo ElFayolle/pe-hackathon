@@ -41,7 +41,7 @@ def grid(lignes, colonnes, obstacles):
 
 def result_into_matrix(L):
     piece_index = L[:,0:12]
-    piece_emplacement = L[:,13:]
+    piece_emplacement = L[:,12:]
     return piece_index, piece_emplacement
 
 
@@ -92,9 +92,9 @@ def grid_layout(grid, liste_sol):
             else:
                 print(counter)
                 counter +=1
-                for k  in range(len(emplacement_piece)):
+                for k in range(len(emplacement_piece)):
                     if emplacement_piece[k][counter] == 1:
-                        piece_name = sum(piece_index[k][l]*k+1 for l in range(len(piece_index[k])))
+                        piece_name = sum(piece_index[k][n]*k+1 for n in range(len(piece_index[k])))
                         grid_color[i,j] = color_palette_rgb[piece_name-1]
 
     plt.imshow(grid_color, interpolation='nearest')
