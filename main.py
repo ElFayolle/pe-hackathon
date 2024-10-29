@@ -153,5 +153,6 @@ def solve(grille,shape,n):
 grid_t = np.array([[1,0,1],[0,0,0],[1,0,0]])
 pieces_index_t = [[1, 0], [0,1]]
 pieces_emplacement_t = [[0,0,0,1,1,1],[1, 1, 1, 0, 0, 0]]
-grid_layout(grid_t,result_into_matrix(pieces_index_t, pieces_emplacement_t))
 
+
+print(solve(grid_t,pieces_index_t,12))
