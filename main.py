@@ -1,11 +1,13 @@
 import numpy
 import xcover 
-
+import matplotlib.pyplot
 
 
 
 def grid(l,c):
     return np.zeroes((l,c))
+
+
 
 
 
@@ -18,3 +20,16 @@ def vrai_test(liste):
         return False
     else :
         pass
+
+
+
+
+
+
+
+
+
+
+
+
+def grid_layout()
