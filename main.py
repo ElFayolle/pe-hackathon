@@ -139,5 +139,5 @@ def rotations_et_symetries(forme_géométrique):
 grid_t = np.array([[1,0,1],[0,0,0],[1,0,0]])
 pieces_index_t = [[1, 0], [0,1]]
 pieces_emplacement_t = [[0,0,0,1,1,1],[1, 1, 1, 0, 0, 0]]
-grid_layout(grid_t,pieces_index_t, pieces_emplacement_t)
+grid_layout(grid_t,result_into_matrix(pieces_index_t, pieces_emplacement_t))
 
