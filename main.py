@@ -1,12 +1,8 @@
 import numpy
-import xcover
-
-def test(ligne):
-    return ligne,ligne
+import xcover 
+import matplotlib.pyplot as plt
 
 
-def vrai_test(liste):
-    if liste :
-        return False
-    else :
-        pass
+
+def grid(l,c):
+    return np.zeroes((l,c))
