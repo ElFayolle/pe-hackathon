@@ -39,7 +39,10 @@ def grid(lignes, colonnes, obstacles):
         grille[x][y] = 1
     return grille
 
-
+def result_into_matrix(L):
+    piece_index = L[:,0:12]
+    piece_emplacement = L[:,13:]
+    return piece_index, piece_emplacement
 
 def grid_layout(grid, piece_index, emplacement_piece):
     #grid = tableau rempli de 1 au niveau des cases obstacles et 0 ailleurs
@@ -62,6 +65,11 @@ def grid_layout(grid, piece_index, emplacement_piece):
 
     plt.imshow(grid_color, interpolation='nearest')
     plt.show()
+
+
+
+
+
 
 ## Test 
 grid_t = np.array([[1,0,1],[0,0,0],[1,0,0]])
